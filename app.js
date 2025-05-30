@@ -10,9 +10,7 @@ const methodOverride = require('method-override')
 const Post = require('./model/Schema')
 const dotenv = require('dotenv');
 dotenv.config();
-const DB = process.env.MONGODB_URI || 'mongodb+srv://abhay212:helloworld@cluster0.sqmot5n.mongodb.net/';
-
-dotenv.config()
+const DB = process.env.MONGO_URI;
 mongoose.set('strictQuery', false)
 
 mongoose.connect(DB)
