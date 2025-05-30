@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashjha03/Postify.git"
+    "url": "git+https://github.com/codes-abhay/postify.git"
   },
-  "author": "",
+  "author": "Abhay",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ashjha03/Postify/issues"
+    "url": "https://github.com/codes-abhay/postify/issues"
   },
-  "homepage": "https://github.com/ashjha03/Postify#readme",
+  "homepage": "https://github.com/codes-abhay/postify#readme",
   "dependencies": {
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.3",
