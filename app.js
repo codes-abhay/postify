@@ -9,8 +9,8 @@ const User = require('./model/User')
 const methodOverride = require('method-override')
 const Post = require('./model/Schema')
 const dotenv = require('dotenv');
-
-const DB = 'mongodb+srv://ashjha03:QEmXL617Ynt494Xp@cluster0.smpdbqt.mongodb.net/postify?retryWrites=true&w=majority'
+dotenv.config();
+const DB = process.env.MONGODB_URI || 'mongodb+srv://abhay212:helloworld@cluster0.sqmot5n.mongodb.net/';
 
 dotenv.config()
 mongoose.set('strictQuery', false)
