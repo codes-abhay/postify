@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/main.css" rel="stylesheet">
+    <title>View Post - Postify</title>
+</head>
+<body class="bg-[#f4f4f4]">
+    <div class="relative head text-center my-2 py-2 bg-white w-[70vw] mx-auto border rounded-lg">
+        <a href="/"><h1 class="text-5xl my-2">Postify 📱</h1></a>
+        <h2 class="text-2xl">Want to share your thoughts, here is Postify for you ...</h2>
+        <%  if(user) { %>
+          <form class="absolute top-2 right-2 px-4" action="/logout" method="post">
+              <button class="bg-red-800 font-bold text-white p-2 px-4 rounded-xl hover:underline">Logout</button>
+          </form>
+          <a class="absolute top-12 right-4 hover:underline bg-[#333] text-white font-bold p-2 rounded-xl mt-2" href="/myPosts">Your Posts</a>
+          <% } else { %> 
+              <form class="absolute top-2 right-2 p-4" action="/login" method="post">
+                  <button class="bg-blue-600 font-bold text-white p-2 px-4 rounded-xl hover:underline">Login</button>
+              </form>
+          <% } %> 
+    </div>
+
+    <section class="text-gray-600 body-font overflow-hidden">
+        <a class="ml-16 my-4 w-[140px] block hover:underline bg-[#333] text-white p-2 rounded-lg" href="/">👈🏻 Back to Home</a>
+        <div class="container px-5 py-12 mx-auto">
+          <div class="mx-auto">
+            <img alt="ecommerce" class="w-auto mx-auto h-auto object-cover object-center rounded-2xl" src="<%= post.imgUrl %>">
+            <div class="w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= post.title%></h1>
+                <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= post._id%></h2>
+                <br>
+              <p class="leading-relaxed"><%= post.desc %> </p>
+              <%   if(user && user.username == post.userName) { %>
+              <div class="flex items-center py-2">
+                <a href="/post/<%= post._id%>/edit" class="mr-4">
+                    <button class="flex ml-auto text-white bg-[#333] border-0 py-2 px-6 focus:outline-none hover:underline rounded"> Edit</button></a>
+                <form action="/post/<%= post._id%>?_method=DELETE" method="POST" class="delete">
+                    <button class="bg-red-600 text-white p-2 hover:underline rounded-xl">🗑️ Delete </button>
+                </form>
+            </div>
+            <% } %> 
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="text-center p-8 bg-white text-lg">
+        <p>Designed & Created By <span>Abhay Sachdeva</span> ( @codes-abhay )</p>
+      </footer>
+</body>
+</html>

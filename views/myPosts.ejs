@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Posts - Postify </title>
+    <link href="./css/main.css" rel="stylesheet">
+</head>
+
+<body class="bg-[#f4f4f4] font-sans">
+    <div class="relative head text-center my-2 py-2 bg-white w-[70vw] mx-auto border rounded-lg">
+        <a href="/"><h1 class="text-5xl my-2">Postify 📱</h1></a>
+        <h2 class="text-2xl">Want to share your thoughts, here is Postify for you ...</h2>
+        <%  if(user) { %>
+            <form class="absolute top-2 right-2 px-4" action="/logout" method="post">
+                <button class="bg-red-800 font-bold text-white p-2 px-4 rounded-xl hover:underline">Logout</button>
+            </form>
+            <a class="absolute top-12 right-6 hover:underline bg-[#333] text-white font-bold p-2 rounded-xl mt-2" href="/">All Posts</a>
+            <% } else { %> 
+                <form class="absolute top-2 right-2 p-4" action="/login" method="post">
+                    <button class="bg-blue-600 font-bold text-white p-2 px-4 rounded-xl hover:underline">Login</button>
+                </form>
+            <% } %> 
+    </div>
+
+    <div class=" container p-4 px-8 w-[70vw]">
+        <div class="grid grid-cols-2 gap-8 container">
+            <% for(let post of posts) { %>
+                <% if(user.username==post.userName) { %>
+                    <div class="card rounded-2xl shadow-lg w-[30vw] bg-white flex flex-col  items-center">
+                        <img class="w-[30vw] h-[60%] rounded-t-2xl" src="<%= post.imgUrl %> " alt="">
+                        <div class="text p-4">
+                            <h2 class="font-bold text-xl">
+                                <%= post.title %>
+                            </h2>
+                            <p>
+                                <%= post.desc.slice(0, 100) %> ...
+                            </p>
+                        </div>
+                        <div class="flex items-center py-2">
+                            <a class="bg-[#333] mr-4 text-white p-2 rounded-xl" href="/post/<%=post._id%>">📚 View
+                                Post</a>
+                            <form class="my-2" action="/post/<%= post._id%>?_method=DELETE" method="POST"
+                                class="delete">
+
+                                <button class="bg-red-600 text-white p-2 rounded-xl">🗑️ Delete </button>
+
+                            </form>
+                        </div>
+                        <div class="flex flex-row-reverse pb-4 font-bold italic font-serif">
+                            <p>Author: <%= post.userName%>
+                            </p>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% } %>
+        </div>
+        <form class="bg-[#fff] shadow-lg rounded-xl fixed top-[9rem] p-7 py-2  right-0" action="/newPost" method="post">
+            <div class="heading text-center font-bold text-xl underline my-4">
+                <h1>Post &nbsp;Something &nbsp;New</h1>
+            </div>
+            <div class="form-input mb-3">
+                <label for="title" class="font-bold">Title: </label>
+                <br>
+                <input class="w-full p-2 border border-[#666] rounded-lg bg-[#f4f4f4]" name="title" type="text">
+            </div>
+            <div class="form-input mb-3">
+                <label for="desc" class="font-bold">Description: </label>
+                <br>
+                <textarea class="w-full p-2 border border-[#666] rounded-lg bg-[#f4f4f4]" name="desc" cols="30"
+                    rows="10"></textarea>
+            </div>
+            <div class="form-input mb-3">
+                <label for="imgUrl" class="font-bold">Image URL: </label>
+                <br>
+                <input class="w-full p-2 border border-[#666] rounded-lg bg-[#f4f4f4]" name="imgUrl" type="text">
+            </div>
+            <button class="my-2 w-full bg-[#333] text-white p-2 rounded-xl">Post</button>
+        </form>
+    </div>
+
+    <footer class="text-center p-8 bg-white text-lg mt-8">
+        <p>Designed & Created By <span>Abhay Sachdeva</span> ( @codes-abhay )</p>
+    </footer>
+</body>
+
+</html>

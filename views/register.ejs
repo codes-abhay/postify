@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/main.css" rel="stylesheet">
+    <title>Login - Postify</title>
+</head>
+<body class="bg-[#f4f4f4]">
+    <div class="relative head text-center my-2 py-2 bg-white w-[70vw] mx-auto border rounded-lg">
+        <a href="/"><h1 class="text-5xl my-2">Postify 📱</h1></a>
+        <h2 class="text-2xl">Want to share your thoughts, here is Postify for you ...</h2>
+        <%  if(user) { %>
+            <form class="absolute top-2 right-2 px-4" action="/logout" method="post">
+                <button class="bg-red-800 font-bold text-white p-2 px-4 rounded-xl hover:underline">Logout</button>
+            </form>
+            <a class="absolute top-12 right-4 hover:underline bg-[#333] text-white font-bold p-2 rounded-xl mt-2" href="/myPosts">Your Posts</a>
+            <% } else { %> 
+                <form class="absolute top-2 right-2 p-4" action="/login" method="post">
+                    <button class="bg-blue-600 font-bold text-white p-2 px-4 rounded-xl hover:underline">Login</button>
+                </form>
+            <% } %> 
+    </div>
+
+    <form action="/register" class="container p-8 rounded-xl bg-[#fff] shadow h-full text-lg mx-auto mt-4" method="post">
+        <p class="text-center bg-[#f4f4f4] py-2 rounded-lg font-bold">Welcome, Postify - Share Your Thoughts <br>  Register here ...</p>
+        <div class="form-input py-4">
+            <label for="title">Username: </label>
+            <br>
+            <input class="p-3 w-full border border-[#666] rounded-lg" name="username" type="text">
+        </div>
+        <div class="form-input py-4">
+            <label for="title">Email: </label>
+            <br>
+            <input class="p-3 w-full border border-[#666] rounded-lg" name="email" type="email">
+        </div>
+        <div class="form-input py-4">
+            <label for="title">Password: </label>
+            <br>
+            <input class="p-3 w-full border border-[#666] rounded-lg" name="password" type="password">
+        </div>
+        <button class="my-6 bg-blue-600 w-[50%] ml-[21vw] text-white p-2 rounded-xl hover:underline">Register</button> 
+        <br>
+        <p class=""><span class="underline"> Already Registered</span><a href="/login" class="my-2 bg-[#333] text-white p-[.7rem] px-[1rem] ml-2 rounded-xl">Login</a></p>
+    </form>
+
+    <footer class="text-center p-8 mt-12 bg-white text-lg">
+        <p>Designed & Created By <span>Abhay Sachdeva</span> ( @codes-abhay )</p>
+    </footer>
+</body>
+</html>
